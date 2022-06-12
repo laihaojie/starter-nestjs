@@ -2,7 +2,7 @@
   "name": "nestjs-starter",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "packageManager": "pnpm@7.1.9",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -66,5 +66,13 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack",
+        "typescript"
+      ]
+    }
   }
 }
