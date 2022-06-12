@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@djie/utils': ^1.0.9
   '@nestjs/cli': ^8.0.0
   '@nestjs/common': ^8.0.0
   '@nestjs/core': ^8.0.0
@@ -30,6 +31,7 @@ specifiers:
   typescript: ^4.3.5
 
 dependencies:
+  '@djie/utils': 1.0.9
   '@nestjs/common': 8.4.6_47vcjb2de6lyibr6g4enoa5lyu
   '@nestjs/core': 8.4.6_suave6mfkne66p6dqupcjv2744
   '@nestjs/platform-express': 8.4.6_etfae4mmenqzp3rs3pua7csngy
@@ -474,6 +476,10 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
+
+  /@djie/utils/1.0.9:
+    resolution: {integrity: sha512-b4N5ffKpNrE+z5Ln318xQDG4vCJfXSBzbo2S1pcQsEBPrHDAmbGV/yYxSzxJRQNg0SxD7TedlTxHo6uLAYQ17w==}
+    dev: false
 
   /@eslint/eslintrc/1.3.0:
     resolution: {integrity: sha512-UWW0TMTmk2d7hLcWD1/e2g5HDM/HQ3csaLSqXCfqwh4uNDuNqlaKWXmEsL4Cs41Z0KnILNvwbHAah3C2yt06kw==}
