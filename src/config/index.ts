@@ -1,17 +1,16 @@
-
 export default {
   server: {
-    port: 9900
+    port: 9900,
   },
   db: {
-    name: "",
+    name: '',
     host: '',
     user: '',
     port: '',
-    pass: ''
+    pass: '',
   },
   jwt: {
-    secret: "111",
+    secret: '111',
     expire: 60 * 60 * 24 * 30,
-  }
+  },
 }
