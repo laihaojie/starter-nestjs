@@ -1,6 +1,6 @@
 export default {
   server: {
-    port: 9900,
+    port: 9901,
   },
   db: {
     name: '',
