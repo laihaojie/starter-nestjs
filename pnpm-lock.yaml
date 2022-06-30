@@ -16,6 +16,7 @@ specifiers:
   '@types/jest': 27.4.1
   '@types/node': ^16.0.0
   '@types/passport-jwt': ^3.0.6
+  '@types/request-ip': ^0.0.37
   '@types/supertest': ^2.0.11
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
@@ -27,6 +28,7 @@ specifiers:
   passport-jwt: ^4.0.0
   prettier: ^2.3.2
   reflect-metadata: ^0.1.13
+  request-ip: ^2.2.0
   rimraf: ^3.0.2
   rxjs: ^7.2.0
   source-map-support: ^0.5.20
@@ -48,6 +50,7 @@ dependencies:
   passport: 0.6.0
   passport-jwt: 4.0.0
   reflect-metadata: 0.1.13
+  request-ip: 2.2.0
   rimraf: 3.0.2
   rxjs: 7.5.5
 
@@ -60,6 +63,7 @@ devDependencies:
   '@types/jest': 27.4.1
   '@types/node': 16.11.39
   '@types/passport-jwt': 3.0.6
+  '@types/request-ip': 0.0.37
   '@types/supertest': 2.0.12
   '@typescript-eslint/eslint-plugin': 5.27.1_aq7uryhocdbvbqum33pitcm3y4
   '@typescript-eslint/parser': 5.27.1_ud6rd4xtew5bv4yhvkvu24pzm4
@@ -1327,6 +1331,12 @@ packages:
 
   /@types/range-parser/1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
+    dev: true
+
+  /@types/request-ip/0.0.37:
+    resolution: {integrity: sha512-uw6/i3rQnpznxD7LtLaeuZytLhKZK6bRoTS6XVJlwxIOoOpEBU7bgKoVXDNtOg4Xl6riUKHa9bjMVrL6ESqYlQ==}
+    dependencies:
+      '@types/node': 16.11.39
     dev: true
 
   /@types/serve-static/1.13.10:
@@ -3938,6 +3948,10 @@ packages:
       call-bind: 1.0.2
     dev: true
 
+  /is_js/0.9.0:
+    resolution: {integrity: sha512-8Y5EHSH+TonfUHX2g3pMJljdbGavg55q4jmHzghJCdqYDbdNROC8uw/YFQwIRCRqRJT1EY3pJefz+kglw+o7sg==}
+    dev: false
+
   /isarray/0.0.1:
     resolution: {integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==}
 
@@ -5469,6 +5483,12 @@ packages:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
     dev: true
+
+  /request-ip/2.2.0:
+    resolution: {integrity: sha512-Hn4zUAr+XHbUs2RrfHur62t7+UhvtevqK32ordFewguEfNHUkhSdYgbG7PDGmXZEzqEXll9bei0+VMe6gkmuUQ==}
+    dependencies:
+      is_js: 0.9.0
+    dev: false
 
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}

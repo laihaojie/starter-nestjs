@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Query, Request } from '@nestjs/common'
-import { Auth } from 'src/common/decorator/auth.decorator'
+import { Auth } from 'src/common/decorators'
 import { R } from 'src/utils/response'
 import { AccountService } from './account.service'
 
