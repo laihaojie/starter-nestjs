@@ -4,6 +4,22 @@ import { Reflector } from '@nestjs/core'
 import { AuthGuard as A } from '@nestjs/passport'
 import { UnAuthorizedException } from '../exceptions/unauthorized'
 
+// @Injectable()
+// export class AuthGuard implements CanActivate {
+//   constructor(private reflector: Reflector) { }
+
+//   canActivate(
+//     context: ExecutionContext,
+//   ): boolean | Promise<boolean> | Observable<boolean> {
+//     const auth = this.reflector.get<string[]>('auth', context.getHandler())
+
+//     const request = context.switchToHttp().getRequest()
+//     if (auth && !request.user)
+//       throw new UnAuthorizedException()
+//     // console.log(' request', request)
+//     return true
+//   }
+// }
 @Injectable()
 export class AuthGuard extends A('jwt') {
   constructor(private reflector: Reflector) { super() }
