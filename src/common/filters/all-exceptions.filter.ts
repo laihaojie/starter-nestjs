@@ -17,7 +17,7 @@ export class AllExceptionsFilter<T> implements ExceptionFilter {
 
     // 捕获用户未认证错误
     if (exception instanceof UnAuthorizedException)
-      return response.status(status).json(N())
+      return response.status(200).json(N())
 
     // 捕获404错误
     if (exception instanceof NotFoundException)
@@ -26,10 +26,10 @@ export class AllExceptionsFilter<T> implements ExceptionFilter {
     // 捕获参数错误
     if (exception instanceof ParamErrorException) {
       const exception_response = exception.getResponse()
-      return response.status(status).json(E(exception_response[0], exception_response))
+      return response.status(200).json(E(exception_response[0], exception_response))
     }
 
     console.log('exception ', exception)
-    return response.status(status).json(E('服务器繁忙', exception))
+    return response.status(200).json(E('服务器繁忙', exception))
   }
 }
