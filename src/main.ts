@@ -8,6 +8,7 @@ import { UserMiddleware } from './common/middlewares/user.middleware'
 import { AuthGuard } from './common/guards/auth.guard'
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter'
 import { ParamErrorException } from './common/exceptions/param_error'
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, {
@@ -31,6 +32,8 @@ const bootstrap = async () => {
   app.useGlobalFilters(new AllExceptionsFilter())
   // 设置全局守卫
   app.useGlobalGuards(new AuthGuard(new Reflector()))
+  // 设置全局拦截器
+  app.useGlobalInterceptors(new LoggingInterceptor())
   // 开启跨域
   app.enableCors()
   // 设置路由前缀
