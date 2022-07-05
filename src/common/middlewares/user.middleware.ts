@@ -1,17 +1,9 @@
-// import * as requestIp from 'request-ip'
+import * as requestIp from 'request-ip'
+import { keyNames } from 'src/config'
 
-export async function UserMiddleware(req: Request, res: Response, next: () => void) {
-  await Promise.resolve(1)
-
-  Promise.resolve().then(() => {
-
-  })
-  process.nextTick(() => {
-    // console.log('request', req.user)
-    // console.log('request', requestIp.getClientIp(req))
-  })
-  process.nextTick(() => {
-    // console.log('res', Object.keys(res))
-  })
+export async function UserMiddleware(request: Request, res: Response, next: () => void) {
+  request[keyNames.start_time] = Date.now()
+  // @ts-expect-error xxx
+  request[keyNames.ip] = requestIp.getClientIp(request)
   next()
 }
