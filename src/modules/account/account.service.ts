@@ -1,11 +1,20 @@
+import { randomStr } from '@djie/utils'
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
+import { CreateLoginDto } from 'src/dto'
+import { R } from 'src/utils/response'
 
 @Injectable()
 export class AccountService {
   constructor(private readonly jwtService: JwtService) { }
 
-  sign_token(payload: any): string {
-    return this.jwtService.sign(payload)
+  login(body: CreateLoginDto, role: string) {
+    // const { account, password } = body
+
+    const payload: JwtPayloadModel = {
+      id: randomStr(45),
+      role,
+    }
+    return R(this.jwtService.sign(payload))
   }
 }

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
+import { JwtStrategy } from 'src/common/jwt.strategy'
 import config from 'src/config'
 import { AccountController } from './account.controller'
 import { AccountService } from './account.service'
-import { JwtStrategy } from './jwt.strategy'
 
 @Module({
   imports: [
