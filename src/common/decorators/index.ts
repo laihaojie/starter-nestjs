@@ -9,7 +9,9 @@ export const IpAddress = createParamDecorator((data, req) => {
   return requestIp.getClientIp(req) // In case we forgot to include requestIp.mw() in main.ts
 })
 
-export const Auth = (...args: string[]) => SetMetadata(keyNames.auth, args)
+export type AuthGuardType = keyof RoleTypeModel
+
+export const Auth = (...args: AuthGuardType[]) => SetMetadata(keyNames.auth, args)
 
 export const User = createParamDecorator((data: unknown, ctx: ExecutionContext) => {
   const request = ctx.switchToHttp().getRequest()

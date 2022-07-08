@@ -25,3 +25,9 @@ export const keyNames = {
   ignore_log: '_ignoreLog_',
   auth: '_auth_',
 }
+
+export const roleType: RoleTypeModel = {
+  super: [1],
+  admin: [1, 2],
+  user: [1, 2, 3],
+}

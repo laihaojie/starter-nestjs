@@ -9,7 +9,7 @@ export class AccountController {
 
   @Post('login')
   async login(@Body() body: CreateLoginDto) {
-    return this.accountService.login(body, 'user')
+    return this.accountService.login(body, 1)
   }
 
   @Get('/info')

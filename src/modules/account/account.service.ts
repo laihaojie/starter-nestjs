@@ -8,7 +8,7 @@ import { R } from 'src/utils/response'
 export class AccountService {
   constructor(private readonly jwtService: JwtService) { }
 
-  login(body: CreateLoginDto, role: string) {
+  login(body: CreateLoginDto, role: number) {
     // const { account, password } = body
 
     const payload: JwtPayloadModel = {

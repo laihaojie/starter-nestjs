@@ -2,7 +2,8 @@ import { ExecutionContext, Injectable } from '@nestjs/common'
 // import { Observable } from 'rxjs'
 import { Reflector } from '@nestjs/core'
 import { AuthGuard as A } from '@nestjs/passport'
-import { keyNames } from 'src/config'
+import { keyNames, roleType } from 'src/config'
+import { AuthGuardType } from '../decorators'
 import { UnAuthorizedException } from '../exceptions/unauthorized'
 
 @Injectable()
@@ -10,14 +11,14 @@ export class AuthGuard extends A('jwt') {
   constructor(private reflector: Reflector) { super() }
 
   async canActivate(context: ExecutionContext) {
-    const auth = this.reflector.get<string[]>(keyNames.auth, context.getHandler())
+    const auth = this.reflector.get<AuthGuardType[]>(keyNames.auth, context.getHandler())
 
     const request = context.switchToHttp().getRequest()
     if (auth) {
       await super.canActivate(context)
       const { role } = request.user
-      if (auth.includes('admin'))
-        return auth.includes(role)
+      if (auth.includes('admin')) return roleType.admin.includes(role)
+      if (auth.includes('super')) return roleType.super.includes(role)
     }
     return true
   }
