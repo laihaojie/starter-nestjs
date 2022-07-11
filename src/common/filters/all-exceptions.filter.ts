@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus, NotFoundException } from '@nestjs/common'
 import { E, N } from 'src/utils/response'
+import { NoPermissionException } from '../exceptions/no_permission_error'
 import { ParamErrorException } from '../exceptions/param_error'
 import { UnAuthorizedException } from '../exceptions/unauthorized'
 import { collectApiLog, collectExceptionLog } from '../logger/collect'
@@ -19,14 +20,20 @@ export class AllExceptionsFilter<T extends Error> implements ExceptionFilter {
 
     // 捕获用户未认证错误
     if (exception instanceof UnAuthorizedException) {
-      collectApiLog(request, N())
-      return response.status(200).json(N())
+      collectApiLog(request, response, N())
+      return response.status(status).json(N())
+    }
+
+    // 权限不够
+    if (exception instanceof NoPermissionException) {
+      collectApiLog(request, response, E('权限不够'))
+      return response.status(200).json(E('权限不够'))
     }
 
     // 捕获404错误
     if (exception instanceof NotFoundException) {
       const res = E('Not Found', exception.getResponse())
-      collectApiLog(request, res)
+      collectApiLog(request, response, res)
       return response.status(status).json(res)
     }
 
@@ -34,10 +41,10 @@ export class AllExceptionsFilter<T extends Error> implements ExceptionFilter {
     if (exception instanceof ParamErrorException) {
       const exception_response = exception.getResponse()
       const res = E(exception_response[0], exception_response)
-      collectApiLog(request, res)
-      return response.status(200).json(res)
+      collectApiLog(request, response, res)
+      return response.status(status).json(res)
     }
-    collectExceptionLog(request, exception)
+    collectExceptionLog(request, response, exception)
     console.log('exception ', exception)
     return response.status(200).json(E('服务器繁忙'))
   }

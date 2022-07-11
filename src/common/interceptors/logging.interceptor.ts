@@ -9,12 +9,13 @@ export class LoggingInterceptor implements NestInterceptor {
   intercept(ctx: ExecutionContext, next: CallHandler): Observable<any> {
     console.log('Before...')
     const request = ctx.switchToHttp().getRequest()
+    const response = ctx.switchToHttp().getResponse()
 
     return next
       .handle()
       .pipe(
         tap((val) => {
-          collectApiLog(request, val)
+          collectApiLog(request, response, val)
         }),
       )
   }
