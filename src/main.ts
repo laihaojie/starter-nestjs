@@ -13,7 +13,7 @@ import { LoggerGuard } from './common/guards/logger.guard'
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, {
-    logger: new MyLogger(),
+    logger: process.env.NODE_ENV !== 'production' ? new MyLogger() : false,
   })
 
   // 设置全局中间件
