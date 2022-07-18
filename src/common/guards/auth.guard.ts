@@ -4,6 +4,7 @@ import { Reflector } from '@nestjs/core'
 import { AuthGuard as A } from '@nestjs/passport'
 import { keyNames, roleType } from 'src/config'
 import { AuthGuardType } from '../decorators'
+import { NoPermissionException } from '../exceptions/no_permission_error'
 import { UnAuthorizedException } from '../exceptions/unauthorized'
 
 @Injectable()
@@ -17,8 +18,7 @@ export class AuthGuard extends A('jwt') {
     if (auth) {
       await super.canActivate(context)
       const { role } = request.user
-      if (auth.includes('admin')) return roleType.admin.includes(role)
-      if (auth.includes('super')) return roleType.super.includes(role)
+      if (auth.every(k => !roleType[k].includes(role))) throw new NoPermissionException()
     }
     return true
   }
