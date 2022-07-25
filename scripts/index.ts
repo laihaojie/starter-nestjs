@@ -3,6 +3,7 @@ import { join } from 'path'
 import fs from 'fs'
 
 const path_name = process.argv[2]
+if (!path_name) process.exit()
 const source_path = join(process.cwd(), 'src/modules', path_name)
 
 const name = source_path.split('\\').reverse()[0]
@@ -26,7 +27,7 @@ if (!fs.existsSync(source_path)) {
   generate()
 }
 else {
-  deleteFile()
+  deleteFile(false)
   const cur = fs.readdirSync(source_path).map(file => [file.split('.')[1], file.split('.')[0]]).filter(i => i[1] === name)
 
   const { controller, module, service } = Object.fromEntries(cur)
@@ -43,13 +44,17 @@ function generate() {
     execSync(command, { stdio: 'inherit' })
   })
 
-  deleteFile()
+  deleteFile(commands.length > 0)
 }
 
-function deleteFile() {
+function deleteFile(lint: boolean) {
   const files = fs.readdirSync(source_path).filter(file => file.endsWith('spec.ts'))
   // 删除文件
   files.forEach((file) => {
     fs.unlinkSync(join(source_path, file))
   })
+  if (lint) {
+    execSync(`eslint --fix src/modules/${path_name}`, { stdio: 'inherit' })
+    execSync('eslint --fix src/app.module.ts', { stdio: 'inherit' })
+  }
 }
