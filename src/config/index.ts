@@ -26,8 +26,13 @@ export const keyNames = {
   auth: '_auth_',
 }
 
-export const roleType: RoleTypeModel = {
-  super: [1],
-  admin: [1, 2],
-  user: [1, 2, 3],
+export enum RoleFlags {
+  // 超级管理员
+  super = 1,
+
+  // 管理员
+  admin = 1 << 1,
+
+  // 用户
+  user = 1 << 2,
 }
