@@ -18,7 +18,7 @@ export class AuthGuard extends A('jwt') {
     if (auth) {
       await super.canActivate(context)
       const { role } = request.user
-      if (auth.length && (role & auth[0])) throw new NoPermissionException()
+      if (auth.length && !(role & auth[0])) throw new NoPermissionException()
     }
     return true
   }
