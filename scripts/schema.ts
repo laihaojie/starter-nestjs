@@ -7,7 +7,7 @@ if (!process.argv[2]) {
   process.exit()
 }
 if (process.argv[2].match(/\W/)) {
-  console.log(pc.yellow('名称不能包含特殊字符'))
+  console.log(pc.yellow('名称不能包含特殊字符 ( 单词用下划线分割 )'))
   process.exit()
 }
 const file_name = process.argv[2]
