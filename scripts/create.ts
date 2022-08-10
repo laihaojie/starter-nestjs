@@ -27,7 +27,6 @@ if (!fs.existsSync(source_path)) {
   generate()
 }
 else {
-  deleteFile(false)
   const cur = fs.readdirSync(source_path).map(file => [file.split('.')[1], file.split('.')[0]]).filter(i => i[1] === name)
 
   const { controller, module, service } = Object.fromEntries(cur)
@@ -43,17 +42,7 @@ function generate() {
   commands.forEach((command) => {
     execSync(command, { stdio: 'inherit' })
   })
-
-  deleteFile(commands.length > 0)
-}
-
-function deleteFile(lint: boolean) {
-  const files = fs.readdirSync(source_path).filter(file => file.endsWith('spec.ts'))
-  // 删除文件
-  files.forEach((file) => {
-    fs.unlinkSync(join(source_path, file))
-  })
-  if (lint) {
+  if (commands.length > 0) {
     execSync(`eslint --fix src/modules/${path_name}`, { stdio: 'inherit' })
     execSync('eslint --fix src/app.module.ts', { stdio: 'inherit' })
   }
