@@ -12,6 +12,7 @@ export class AllExceptionsFilter<T extends Error> implements ExceptionFilter {
     const ctx = host.switchToHttp()
     const response = ctx.getResponse()
     const request = ctx.getRequest()
+    let response_data
 
     const status
       = exception instanceof HttpException
@@ -20,32 +21,35 @@ export class AllExceptionsFilter<T extends Error> implements ExceptionFilter {
 
     // 捕获用户未认证错误
     if (exception instanceof UnAuthorizedException) {
-      collectApiLog(request, response, N())
-      return response.status(status).json(N())
+      response_data = N()
+      collectApiLog(request, response, response_data)
+      return response.status(status).json(response_data)
     }
 
     // 权限不够
     if (exception instanceof NoPermissionException) {
-      collectApiLog(request, response, E('权限不够'))
-      return response.status(200).json(E('权限不够'))
+      response_data = E('权限不够')
+      collectApiLog(request, response, response_data)
+      return response.status(200).json(response_data)
     }
 
     // 捕获404错误
     if (exception instanceof NotFoundException) {
-      const res = E('Not Found', exception.getResponse())
-      collectApiLog(request, response, res)
-      return response.status(status).json(res)
+      response_data = E('Not Found', exception.getResponse())
+      collectApiLog(request, response, response_data)
+      return response.status(status).json(response_data)
     }
 
     // 捕获参数错误
     if (exception instanceof ParamErrorException) {
       const exception_response = exception.getResponse()
-      const res = E(exception_response[0], exception_response)
-      collectApiLog(request, response, res)
-      return response.status(status).json(res)
+      response_data = E(exception_response[0], exception_response)
+      collectApiLog(request, response, response_data)
+      return response.status(status).json(response_data)
     }
     collectExceptionLog(request, response, exception)
+    response_data = E('服务器繁忙')
     console.log('exception ', exception)
-    return response.status(200).json(E('服务器繁忙'))
+    return response.status(200).json(response_data)
   }
 }
