@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus, NotFoundException } from '@nestjs/common'
 import { E, N } from 'src/utils/response'
+import { FileTypeException } from '../exceptions/file_type_error'
 import { NoPermissionException } from '../exceptions/no_permission_error'
 import { ParamErrorException } from '../exceptions/param_error'
 import { UnAuthorizedException } from '../exceptions/unauthorized'
@@ -47,6 +48,14 @@ export class AllExceptionsFilter<T extends Error> implements ExceptionFilter {
       collectApiLog(request, response, response_data)
       return response.status(status).json(response_data)
     }
+
+    // 文件类型错误
+    if (exception instanceof FileTypeException) {
+      response_data = E('文件类型错误')
+      collectApiLog(request, response, response_data)
+      return response.status(200).json(response_data)
+    }
+
     collectExceptionLog(request, response, exception)
     response_data = E('服务器繁忙')
     console.log('exception ', exception)
