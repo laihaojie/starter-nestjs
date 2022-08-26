@@ -10,15 +10,15 @@ const name = source_path.split('\\').reverse()[0]
 const obj = {
   module: {
     exist: false,
-    command: `nest g mo modules/${path_name}`,
+    command: `nest g mo modules/${path_name} --no-spec`,
   },
   controller: {
     exist: false,
-    command: `nest g co modules/${path_name}`,
+    command: `nest g co modules/${path_name} --no-spec`,
   },
   service: {
     exist: false,
-    command: `nest g s modules/${path_name}`,
+    command: `nest g s modules/${path_name} --no-spec`,
   },
 }
 
