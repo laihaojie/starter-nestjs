@@ -1,11 +1,16 @@
 import { Body, Controller, Get, Post, Query, Request } from '@nestjs/common'
 import { Auth } from 'src/common/decorators'
-import { CreateLoginDto } from 'src/dto'
+import { CreateLoginDto, CreateQueryDto } from 'src/dto'
 import { AccountService } from './account.service'
 
 @Controller('account')
 export class AccountController {
   constructor(private readonly accountService: AccountService) { }
+
+  @Get()
+  async get(@Query() query: CreateQueryDto) {
+    return query
+  }
 
   @Post('login')
   async login(@Body() body: CreateLoginDto) {

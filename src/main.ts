@@ -24,12 +24,19 @@ const bootstrap = async () => {
 
   // 开启参数验证
   app.useGlobalPipes(new ValidationPipe({
+    transform: true,
     // 是否剔除dto未包含的参数
     whitelist: true,
     // 是否出现dto未包含的参数时抛出异常直接返回错误
     // forbidNonWhitelisted: true,
     // 自定义错误状态码
     // errorHttpStatusCode: 200,
+    // 跳过未定义属性验证
+    skipUndefinedProperties: true,
+    transformOptions: {
+      // 根据typescript类型反射进行自动类型转换
+      enableImplicitConversion: true,
+    },
     exceptionFactory: errors => new ParamErrorException(errors),
   }))
 
