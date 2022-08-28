@@ -24,6 +24,7 @@ const bootstrap = async () => {
 
   // 开启参数验证
   app.useGlobalPipes(new ValidationPipe({
+    // 是否开启根据typescript类型反射进行自动类型转换
     transform: true,
     // 是否剔除dto未包含的参数
     whitelist: true,
@@ -34,7 +35,7 @@ const bootstrap = async () => {
     // 跳过未定义属性验证
     skipUndefinedProperties: true,
     transformOptions: {
-      // 根据typescript类型反射进行自动类型转换
+      // DTO中是否开启根据typescript类型反射进行自动类型转换
       enableImplicitConversion: true,
     },
     exceptionFactory: errors => new ParamErrorException(errors),
