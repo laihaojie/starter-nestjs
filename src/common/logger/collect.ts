@@ -15,7 +15,7 @@ export const collectExceptionLog = (request: Request, response: Response, result
 export const collectDebugLog = (request: Request, response: Response, result: any) => {
   // t_log.create({
   //   id: randomStr(45),
-  //   type: loggerType.debug,
+  //   type: LoggerFlags.debug,
   //   log: JSON.stringify({
   //     time: Date.now() - request[KeyFlags.start_time],
   //     request: {
