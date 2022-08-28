@@ -19,12 +19,20 @@ export const loggerType = {
   exception: 'exception',
   debug: 'debug',
 }
-export const keyNames = {
-  start_time: '_startTime_',
-  ip: '_ip_',
-  ignore_log: '_ignoreLog_',
-  auth: '_auth_',
+
+export enum KeyFlags {
+  start_time = '_startTime_',
+  ip = '_ip_',
+  ignore_log = '_ignoreLog_',
+  auth = '_auth_',
 }
+
+// export const KeyFlags = {
+//   start_time: '_startTime_',
+//   ip: '_ip_',
+//   ignore_log: '_ignoreLog_',
+//   auth: '_auth_',
+// }
 
 export enum RoleFlags {
   // 超级管理员

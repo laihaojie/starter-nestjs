@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
-import { Observable } from 'rxjs'
 import { Reflector } from '@nestjs/core'
-import { keyNames } from 'src/config'
+import { Observable } from 'rxjs'
+import { KeyFlags } from 'src/config'
 
 @Injectable()
 export class LoggerGuard implements CanActivate {
@@ -10,11 +10,11 @@ export class LoggerGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const ignore = this.reflector.get<string[]>(keyNames.ignore_log, context.getHandler())
+    const ignore = this.reflector.get<string[]>(KeyFlags.ignore_log, context.getHandler())
 
     const request = context.switchToHttp().getRequest()
     if (ignore)
-      request[keyNames.ignore_log] = true
+      request[KeyFlags.ignore_log] = true
 
     return true
   }
