@@ -19,14 +19,12 @@ const class_name = file_name.split('_').filter(Boolean).map(item => item.charAt(
 // 服务名称
 const service_name = class_name.charAt(0).toLowerCase() + class_name.slice(1)
 
-
 // 模块文件夹路径
 const module_dir_path = path.join(__dirname, `../src/modules/${file_name}`)
 // dto文件夹路径
-const dto_dir_path = path.join(module_dir_path, `dto`)
+const dto_dir_path = path.join(module_dir_path, 'dto')
 // app文件路径
-const app_path = path.join(__dirname, `../src/app.module.ts`)
-
+const app_path = path.join(__dirname, '../src/app.module.ts')
 
 // 判断目录是否存在
 if (fs.existsSync(module_dir_path)) {
@@ -98,7 +96,7 @@ export class $class_nameController {
   const file_path = path.join(module_dir_path, `${file_name}.controller.ts`)
   fs.writeFileSync(
     file_path,
-    template.replace(/\$class_name/g, class_name).replace(/\$file_name/g, file_name).replace(/\$service_name/g, service_name)
+    template.replace(/\$class_name/g, class_name).replace(/\$file_name/g, file_name).replace(/\$service_name/g, service_name),
   )
 }
 
@@ -128,7 +126,7 @@ export class $class_nameService {
   const file_path = path.join(module_dir_path, `${file_name}.service.ts`)
   fs.writeFileSync(
     file_path,
-    template.replace(/\$class_name/g, class_name).replace(/\$file_name/g, file_name).replace(/\$service_name/g, service_name)
+    template.replace(/\$class_name/g, class_name).replace(/\$file_name/g, file_name).replace(/\$service_name/g, service_name),
   )
 }
 
@@ -143,16 +141,16 @@ export class Create$class_nameDto {
   age: number
 }
   `
-  const file_path = path.join(dto_dir_path, `index.ts`)
+  const file_path = path.join(dto_dir_path, 'index.ts')
   fs.writeFileSync(
     file_path,
-    template.replace(/\$class_name/g, class_name)
+    template.replace(/\$class_name/g, class_name),
   )
 }
 
 function updateAppModule() {
   let app_module_content = fs.readFileSync(app_path, 'utf8')
-  const import_text = `import { $class_nameModule } from './modules/$file_name/$file_name.module'\r\n`
+  const import_text = 'import { $class_nameModule } from \'./modules/$file_name/$file_name.module\'\r\n'
     .replace(/\$class_name/g, class_name)
     .replace(/\$file_name/g, file_name)
   app_module_content = import_text + app_module_content
