@@ -47,7 +47,8 @@ createDTO()
 updateAppModule()
 
 function createModule() {
-  const template = `import { Module } from '@nestjs/common'
+  const template = `
+import { Module } from '@nestjs/common'
 import { $class_nameController } from './$file_name.controller'
 import { $class_nameService } from './$file_name.service'
 
@@ -56,13 +57,14 @@ import { $class_nameService } from './$file_name.service'
   providers: [$class_nameService],
 })
 export class $class_nameModule {}
-`
+`.trim()
   const file_path = path.join(module_dir_path, `${file_name}.module.ts`)
   fs.writeFileSync(file_path, template.replace(/\$class_name/g, class_name).replace(/\$file_name/g, file_name))
 }
 
 function createController() {
-  const template = `import { Body, Controller, Get, Post, Query } from '@nestjs/common'
+  const template = `
+import { Body, Controller, Get, Post, Query } from '@nestjs/common'
 import { $class_nameService } from './$file_name.service'
 import { Create$class_nameDto } from './dto'
 
@@ -92,7 +94,7 @@ export class $class_nameController {
     return this.$service_nameService.update(body)
   }
 }
-  `
+  `.trim()
   const file_path = path.join(module_dir_path, `${file_name}.controller.ts`)
   fs.writeFileSync(
     file_path,
@@ -101,7 +103,8 @@ export class $class_nameController {
 }
 
 function createService() {
-  const template = `import { Injectable } from '@nestjs/common'
+  const template = `
+import { Injectable } from '@nestjs/common'
 import { Create$class_nameDto } from './dto'
 
 @Injectable()
@@ -122,7 +125,7 @@ export class $class_nameService {
     return '$file_name更新'
   }
 }
-  `
+  `.trim()
   const file_path = path.join(module_dir_path, `${file_name}.service.ts`)
   fs.writeFileSync(
     file_path,
@@ -131,7 +134,8 @@ export class $class_nameService {
 }
 
 function createDTO() {
-  const template = `import { IsNotEmpty } from 'class-validator'
+  const template = `
+import { IsNotEmpty } from 'class-validator'
 
 export class Create$class_nameDto {
   @IsNotEmpty()
@@ -140,7 +144,7 @@ export class Create$class_nameDto {
   @IsNotEmpty()
   age: number
 }
-  `
+  `.trim()
   const file_path = path.join(dto_dir_path, 'index.ts')
   fs.writeFileSync(
     file_path,
