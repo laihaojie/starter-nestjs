@@ -33,7 +33,7 @@ const bootstrap = async () => {
     // 自定义错误状态码
     // errorHttpStatusCode: 200,
     // 跳过未定义属性验证
-    skipUndefinedProperties: true,
+    // skipUndefinedProperties: true,
     transformOptions: {
       // DTO中是否开启根据typescript类型反射进行自动类型转换
       enableImplicitConversion: true,
