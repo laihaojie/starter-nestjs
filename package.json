@@ -6,7 +6,7 @@
   "description": "",
   "license": "UNLICENSED",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist node_modules pnpm-lock.yaml",
     "build": "nest build",
     "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
