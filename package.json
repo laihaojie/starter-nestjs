@@ -6,7 +6,7 @@
   "description": "",
   "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "clean": "rimraf dist",
     "build": "nest build",
     "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -42,7 +42,7 @@
     "rxjs": "^7.5.5"
   },
   "devDependencies": {
-    "@djie/eslint-config": "^1.0.11",
+    "@djie/eslint-config": "^1.0.24",
     "@nestjs/cli": "^8.2.8",
     "@nestjs/schematics": "^8.0.11",
     "@nestjs/testing": "^8.4.7",
@@ -54,7 +54,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
-    "eslint": "^8.19.0",
+    "eslint": "^8.38.0",
     "esno": "^0.16.3",
     "jest": "^27.5.1",
     "picocolors": "^1.0.0",
