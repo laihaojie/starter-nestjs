@@ -1,7 +1,7 @@
 import { ExecutionContext, SetMetadata, createParamDecorator } from '@nestjs/common'
 
 import * as requestIp from 'request-ip'
-import { KeyFlags, RoleFlags } from 'src/config'
+import { KeyFlags, RoleFlags } from 'config'
 
 export const IpAddress = createParamDecorator((data, req) => {
   if (req.clientIp)

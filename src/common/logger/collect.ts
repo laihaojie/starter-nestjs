@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { KeyFlags } from 'src/config'
+/* eslint-disable unused-imports/no-unused-vars */
+import { KeyFlags } from 'config'
 
 export const collectApiLog = (request: Request, response: Response, result: any) => {
   // eslint-disable-next-line no-useless-return

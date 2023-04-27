@@ -2,9 +2,9 @@
 /* eslint-disable no-console */
 import { ConsoleLogger } from '@nestjs/common'
 import { Colors } from 'picocolors/types'
-import config from 'src/config'
+import config from 'config'
 
-const os = require('os')
+const os = require('node:os')
 const pc: Colors = require('picocolors')
 
 export class MyLogger extends ConsoleLogger {

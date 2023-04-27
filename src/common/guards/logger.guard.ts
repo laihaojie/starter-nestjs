@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { Observable } from 'rxjs'
-import { KeyFlags } from 'src/config'
+import { KeyFlags } from 'config'
 
 @Injectable()
 export class LoggerGuard implements CanActivate {

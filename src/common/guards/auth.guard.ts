@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common'
 // import { Observable } from 'rxjs'
 import { Reflector } from '@nestjs/core'
 import { AuthGuard as A } from '@nestjs/passport'
-import { KeyFlags } from 'src/config'
+import { KeyFlags } from 'config'
 import { AuthGuardType } from '../decorators'
 import { NoPermissionException } from '../exceptions/no_permission_error'
 import { UnAuthorizedException } from '../exceptions/unauthorized'
@@ -23,7 +23,7 @@ export class AuthGuard extends A('jwt') {
     return true
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line unused-imports/no-unused-vars
   handleRequest(err, user, info) {
     // 可以抛出一个基于info或者err参数的异常
     if (err || !user)

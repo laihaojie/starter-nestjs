@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import pc from 'picocolors'
 
 if (!process.argv[2]) {
@@ -50,4 +50,3 @@ service_content = service_content.replace(/\r\n@Injectable\(\)/, `import { ${cla
 
 fs.writeFileSync(service_path, service_content)
 console.log(pc.green(`创建成功，请点击这里 >> ${pc.blue(`src/db/schemas/${file_name}.ts`)}  定义${class_name}类`))
-

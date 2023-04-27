@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { ConsoleLogger } from '@nestjs/common'
-import config from '../config'
+import config from '../../config'
 
 export class MyLogger extends ConsoleLogger {
   log(message: string): void {
