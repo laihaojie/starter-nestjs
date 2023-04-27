@@ -71,27 +71,27 @@ import { Create$class_nameDto } from './dto'
 @Controller('$file_name')
 export class $class_nameController {
   constructor(
-    private readonly $service_nameService: $class_nameService
+    private readonly service: $class_nameService
   ) { }
 
   @Get('list')
   async list() {
-    return this.$service_nameService.list()
+    return this.service.list()
   }
 
   @Post('create')
   async create(@Body() body: Create$class_nameDto) {
-    return this.$service_nameService.create(body)
+    return this.service.create(body)
   }
 
   @Post('remove')
   async remove() {
-    return this.$service_nameService.remove()
+    return this.service.remove()
   }
 
   @Post('update')
   async update(@Body() body: Create$class_nameDto) {
-    return this.$service_nameService.update(body)
+    return this.service.update(body)
   }
 }
   `.trim()
