@@ -1,4 +1,4 @@
 interface JwtPayloadModel {
-  id: string;
-  role: number;
+  id: string
+  role: number
 }

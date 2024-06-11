@@ -1,17 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-console */
+import os from 'node:os'
 import { ConsoleLogger } from '@nestjs/common'
-import { Colors } from 'picocolors/types'
 import config from 'config'
-
-const os = require('node:os')
-const pc: Colors = require('picocolors')
+import pc from 'picocolors'
 
 export class MyLogger extends ConsoleLogger {
   log(message: string, context): void {
     if (context === 'InstanceLoader') return
     if (message.includes('route')) {
-      const str = message.match(/(?<={).+(?=})/)?.[0]
+      const str = message.match(/(?<=\{).+(?=\})/)?.[0]
       const [path, method] = str.split(', ')
       const log = `http://${getIPAddress()}:${config.server.port}${path}`
       console.log(pc.green(method.padEnd(4, ' ')), pc.blue(log))

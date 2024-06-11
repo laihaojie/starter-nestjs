@@ -1,3 +1,4 @@
+/* eslint-disable ts/prefer-literal-enum-member */
 export default {
   server: {
     port: 9901,

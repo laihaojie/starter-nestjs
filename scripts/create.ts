@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process'
 import { join } from 'node:path'
 import fs from 'node:fs'
+import process from 'node:process'
 
 const path_name = process.argv[2]
 if (!path_name) process.exit()

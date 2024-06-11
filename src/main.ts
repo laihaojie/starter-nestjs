@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { NestFactory, Reflector } from '@nestjs/core'
 import * as requestIp from 'request-ip'
 import { ValidationPipe } from '@nestjs/common'
@@ -11,7 +12,7 @@ import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { MyLogger } from './common/logger'
 import { LoggerGuard } from './common/guards/logger.guard'
 
-const bootstrap = async () => {
+async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: process.env.NODE_ENV !== 'production' ? new MyLogger() : false,
   })
