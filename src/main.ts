@@ -11,6 +11,7 @@ import { ParamErrorException } from './common/exceptions/param_error'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { MyLogger } from './common/logger'
 import { LoggerGuard } from './common/guards/logger.guard'
+import { initDb } from './db'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -57,6 +58,9 @@ async function bootstrap() {
 
   // 设置路由前缀
   app.setGlobalPrefix('api')
+
+  // 初始化数据库
+  // await initDb()
 
   // 启动应用
   await app.listen(config.server.port)
